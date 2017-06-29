@@ -1,0 +1,16 @@
+{
+  "name": "cumplo-milligram",
+  "version": "0.0.1",
+  "description": "NodeJS CLI para actualizar Milligram.io con la identidad gráfica digital de Cumplo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test.js"
+  },
+  "author": "Jorge Epuñan",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "filehound": "^1.16.1",
+    "inquirer": "^3.0.6"
+  }
+}
