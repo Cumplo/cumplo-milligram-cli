@@ -1,0 +1,19 @@
+
+// Table Cumplo
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+th {
+  background-color: $color-tertiary;
+}
+
+td,
+th {
+  border-bottom: .1rem solid $color-tertiary;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+}
