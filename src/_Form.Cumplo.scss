@@ -1,0 +1,135 @@
+
+// Cumplo Form
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// from: https://codepen.io/KenanYusuf/pen/PZKEKd
+
+
+.input {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 18px;
+
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+}
+
+.indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: transparent;
+  border: 1px solid $color-quinary;
+  border-radius: 3px;
+}
+.radio .indicator {
+  border-radius: 50%;
+}
+.input:hover input ~ .indicator,
+.input input:focus ~ .indicator {
+  background: $color-tertiary;
+}
+.input input:checked ~ .indicator {
+  background: transparent;
+}
+.input:hover input:not([disabled]):checked ~ .indicator,
+.input input:checked:focus ~ .indicator {
+  background: $color-tertiary;
+}
+.input input:disabled ~ .indicator {
+  background: $color-tertiary;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.input input:checked ~ .indicator:after {
+  display: block;
+}
+.checkbox .indicator:after {
+  left: 6px;
+  top: 2px;
+  width: 7px;
+  height: 12px;
+  border: solid $color-primary;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+.checkbox input:disabled ~ .indicator:after {
+  border-color: $color-quaternary;
+}
+.radio .indicator:after {
+  left: 4px;
+  top: 4px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: $color-primary;
+}
+.radio input:disabled ~ .indicator:after {
+  background: $color-quaternary;
+}
+.select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+
+  select {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    outline: 0;
+    border: 1px solid $color-quinary;
+    border-radius: 3px;
+    background: transparent;
+    color: #000;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:hover,
+    &:focus {
+      background: $color-tertiary;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+
+.arrow {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #000 transparent transparent transparent;
+}
+.select select:hover ~ .arrow,
+.select select:focus ~ .arrow {
+  border-top-color: #000;
+}
+.select select:disabled ~ .arrow {
+  border-top-color: $color-quinary;
+}
