@@ -1,9 +1,11 @@
 'use strict';
 
-var fs        = require('fs');
-var inquirer  = require('inquirer');
-var filehound = require('filehound');
-var _CUMPLOFILES = getCumploFiles('./', 'scss');
+var fs            = require('fs');
+var path          = require('path');
+var pkg           = require(path.join(__dirname, './package.json'));
+var inquirer      = require('inquirer');
+var filehound     = require('filehound');
+var _CUMPLOFILES  = getCumploFiles('./src/', 'scss');
 
 
 /**
@@ -31,7 +33,8 @@ function getCumploFiles(srcPath, extension) {
  */
 
 function transformCumploFiles(file) {
-  return file.replace('Cumplo.scss', 'scss');
+  // return file.replace('Cumplo.scss', 'scss');
+  return file.replace('src/', '').replace('Cumplo.scss', 'scss');
 }
 
 
@@ -157,6 +160,8 @@ var againQuestion = [
   }
 ];
 
+var intro = '\r\n[ Cumplo-Milligram CLI v.' + pkg.version + ' ]\r\n';
+
 
 /**
  * initQuestion
@@ -165,6 +170,8 @@ var againQuestion = [
  */
 
 function initQuestion() {
+
+  console.log(intro);
 
   inquirer.prompt(questions).then(function (answers) {
 

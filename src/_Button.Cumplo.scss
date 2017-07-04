@@ -1,0 +1,57 @@
+
+// Cumplo Button
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.button,
+button,
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  text-transform: normal;
+
+  &:focus,
+  &:hover {
+    background-color: darken($color-primary, 10%);
+    border-color: darken($color-primary, 10%);
+  }
+
+  &.button-outline {
+    background-color: transparent;
+    color: $color-primary;
+
+    &:focus,
+    &:hover {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: $color-initial;
+    }
+  }
+
+  &.button-clear {
+
+    &:focus,
+    &:hover {
+      color: darken($color-primary, 10%);
+    }
+  }
+
+  &.button-action {
+    background-color: $color-sexenary;
+    border: .1rem solid $color-sexenary;
+
+    &:focus,
+    &:hover {
+      background-color: darken($color-sexenary, 10%);
+      border-color: darken($color-sexenary, 10%);
+    }
+
+    &[disabled] {
+
+      &:focus,
+      &:hover {
+        background-color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+}
