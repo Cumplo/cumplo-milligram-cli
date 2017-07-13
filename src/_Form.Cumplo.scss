@@ -4,6 +4,12 @@
 // from: https://codepen.io/KenanYusuf/pen/PZKEKd
 
 
+input:placeholder-shown,
+textarea:placeholder-shown {
+  background-color: $color-tertiary;
+}
+input:not(:placeholder-shown) {}
+
 .input {
   display: block;
   position: relative;
@@ -11,6 +17,7 @@
   margin-bottom: 15px;
   cursor: pointer;
   font-size: 18px;
+  font-weight:  normal;
 
   input {
     position: absolute;

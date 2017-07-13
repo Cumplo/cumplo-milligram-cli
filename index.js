@@ -5,6 +5,12 @@ var path          = require('path');
 var pkg           = require(path.join(__dirname, './package.json'));
 var inquirer      = require('inquirer');
 var filehound     = require('filehound');
+var promisify     = require("promisify-node");
+var fse           = promisify(require("fs-extra"));
+var cloneOrPull   = require('git-clone-or-pull');
+var cmd           = require('node-cmd');
+
+var _REPOPATH     = './milligram';
 var _CUMPLOFILES  = getCumploFiles('./src/', 'scss');
 
 
@@ -26,6 +32,25 @@ function getCumploFiles(srcPath, extension) {
 
 
 /**
+ * cloneMilligramFromRepo
+ * @type: function
+ * @params: none
+ * @return: none
+ */
+function cloneMilligramFromRepo() {
+  console.log('Clonando desde repositorio de GitHub...');
+
+  fse.remove(_REPOPATH).then(function() {
+    cloneOrPull('https://github.com/milligram/milligram-scss', _REPOPATH, function(err) {
+        if (err) throw err;
+     
+        console.log('OK.')
+        initQuestion();
+    });
+  })
+}
+
+/**
  * transformCumploFiles
  * @type: function
  * @params: file
@@ -33,7 +58,6 @@ function getCumploFiles(srcPath, extension) {
  */
 
 function transformCumploFiles(file) {
-  // return file.replace('Cumplo.scss', 'scss');
   return file.replace('src/', '').replace('Cumplo.scss', 'scss');
 }
 
@@ -85,6 +109,7 @@ function replaceFileContent(srcPath, distPath) {
  */
 
 function mergeFileContent(srcPathCumplo, srcPathMilligram, distPath) {
+
   var mergedData = "";
 
   getFileContent(srcPathCumplo, function(data) {
@@ -103,6 +128,7 @@ function mergeFileContent(srcPathCumplo, srcPathMilligram, distPath) {
     });
 
   });
+
 }
 
 
@@ -117,7 +143,7 @@ var questions = [
     name: 'distPath',
     message: 'Ruta de archivos base Milligram:',
     default: function () {
-      return '../milligram/src/';
+      return './milligram/src/';
     }
   },
   {
@@ -151,11 +177,29 @@ var questions = [
   }
 ];
 
+var cloneRepoQuestion = [
+  {
+    type: 'confirm',
+    name: 'cloneRepo',
+    message: 'Deseas clonar el repositorio de Milligram Scss?',
+    default: true
+  }
+];
+
 var againQuestion = [
   {
     type: 'confirm',
     name: 'askAgain',
     message: '¿Deseas seleccionar otro archivo?',
+    default: true
+  }
+];
+
+var compileQuestion = [
+  {
+    type: 'confirm',
+    name: 'compileFiles',
+    message: '¿Deseas compilar el build de Milligram?',
     default: true
   }
 ];
@@ -190,6 +234,73 @@ function initQuestion() {
 
 
 /**
+ * cloneRepo
+ * @type: function
+ * @return: nothing
+ */
+
+function cloneRepo() {
+
+  inquirer.prompt(cloneRepoQuestion).then(function(answers) {
+    if (answers.cloneRepo) {
+      cloneMilligramFromRepo();
+    } else {
+      initQuestion();
+    }
+  });
+
+}
+
+
+/**
+ * compileMilligram
+ * @type: function
+ * @param: srcPath | string
+ * @return: nothing, executes
+ */
+
+function compileMilligram(srcPath) {
+
+  cmd.get(
+    `
+      cd ${srcPath}
+      yarn
+      npm run build
+    `,
+      function(err, data, stderr) {
+        console.log('Milligram compilado exitosamente.');
+        cmd.get(
+          `
+          cd ${srcPath}/test/
+          ls -1 $(pwd)/*.css
+          `,
+          function(err, data, stderr) {
+            console.log('Los archivos se encuentran en:\r\n', data);
+          }
+        );
+      }
+  );
+
+}
+
+
+/**
+ * compileFiles
+ * @type: function
+ * @return: nothing
+ */
+
+function compileFiles(srcPath) {
+
+  inquirer.prompt(compileQuestion).then(function(answers) {
+    if (answers.compileFiles) {
+      compileMilligram(_REPOPATH);
+    }
+  });
+
+}
+
+/**
  * askAgain
  * @type: function
  * @return: nothing
@@ -200,9 +311,12 @@ function askAgain() {
   inquirer.prompt(againQuestion).then(function(answers) {
     if (answers.askAgain) {
       initQuestion();
+    } else {
+      compileFiles(_REPOPATH);
     }
   });
 
 }
 
-initQuestion();
+
+cloneRepo();

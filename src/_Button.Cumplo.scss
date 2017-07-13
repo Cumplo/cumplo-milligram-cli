@@ -7,7 +7,8 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  text-transform: normal;
+  text-transform: none;
+  font-size: 1.4rem;
 
   &:focus,
   &:hover {
