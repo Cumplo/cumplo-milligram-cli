@@ -58,3 +58,4 @@ typings/
 .env
 
 /milligram
+/example/*.css

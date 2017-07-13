@@ -5,10 +5,11 @@ var path          = require('path');
 var pkg           = require(path.join(__dirname, './package.json'));
 var inquirer      = require('inquirer');
 var filehound     = require('filehound');
-var promisify     = require("promisify-node");
-var fse           = promisify(require("fs-extra"));
+var promisify     = require('promisify-node');
+var fse           = promisify(require('fs-extra'));
 var cloneOrPull   = require('git-clone-or-pull');
 var cmd           = require('node-cmd');
+var bs            = require('browser-sync').create();
 
 var _REPOPATH     = './milligram';
 var _CUMPLOFILES  = getCumploFiles('./src/', 'scss');
@@ -204,6 +205,15 @@ var compileQuestion = [
   }
 ];
 
+var staticQuestion = [
+  {
+    type: 'confirm',
+    name: 'staticServe',
+    message: '¿Deseas abrir el ejemplo en tu navegador?',
+    default: true
+  }
+];
+
 var intro = '\r\n[ Cumplo-Milligram CLI v.' + pkg.version + ' ]\r\n';
 
 
@@ -265,7 +275,6 @@ function compileMilligram(srcPath) {
     `
       cd ${srcPath}
       yarn
-      npm run build
     `,
       function(err, data, stderr) {
         console.log('Milligram compilado exitosamente.');
@@ -276,11 +285,26 @@ function compileMilligram(srcPath) {
           `,
           function(err, data, stderr) {
             console.log('Los archivos se encuentran en:\r\n', data);
+            askStatic();
           }
         );
       }
   );
 
+}
+
+
+/**
+ * staticServe
+ * @type: function
+ * @return: nothing, executes
+ */
+
+function staticServe() {
+  fs.createReadStream(_REPOPATH + '/test/milligram.min.css').pipe(fs.createWriteStream('./example/milligram.min.css'));
+  bs.init({
+    server: "./example"
+  });
 }
 
 
@@ -298,7 +322,19 @@ function compileFiles(srcPath) {
     }
   });
 
+
 }
+
+function askStatic() {
+
+  inquirer.prompt(staticQuestion).then(function(answers) {
+    if (answers.staticServe) {
+      staticServe();
+    }
+  });
+
+}
+
 
 /**
  * askAgain
