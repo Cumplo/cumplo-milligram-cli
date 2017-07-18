@@ -275,6 +275,7 @@ function compileMilligram(srcPath) {
     `
       cd ${srcPath}
       yarn
+      npm run build
     `,
       function(err, data, stderr) {
         console.log('Milligram compilado exitosamente.');
