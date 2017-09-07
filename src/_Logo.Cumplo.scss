@@ -1,35 +1,38 @@
 
 // Logos Cumplo
+// Crear
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 
 .logo {
   background-repeat: no-repeat;
   background-size: cover;
+  text-indent: -9999px;
+  overflow: hidden;
 
-  .tasajusta {
+  &.tasajusta {
     background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-tasajusta_v.svg);
     width: 250px;
     height: 40px;
 
-    &.color {
+    &.-color {
       background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-tasajusta.svg);
     }
   }
-  .isotipo {
+  &.isotipo {
     background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-isotipo_v.svg);
     width: 100px;
     height: 100px;
 
-    &.color {
+    &.-color {
       background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-isotipo.svg);
     }
   }
-  .cumplo {
+  &.cumplo {
     background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-logo_v.svg);
     width: 150px;
     height: 40px;
 
-    &.color {
+    &.-color {
       background-image: url(https://secure-cdn.cumplo.cl/logos/cumplo-logo.svg);
     }
   }
