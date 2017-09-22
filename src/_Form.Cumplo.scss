@@ -11,6 +11,15 @@ textarea:placeholder-shown {
 }
 input:not(:placeholder-shown) {}
 
+input,
+textarea {
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
 .input {
   display: block;
   position: relative;
