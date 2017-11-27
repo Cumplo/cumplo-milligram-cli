@@ -1,6 +1,6 @@
 # Cumplo Milligram CLI
 
-*NodeJS CLI para actualizar Milligram.io con la identidad gráfica digital de Cumplo*
+*NodeJS CLI para actualizar [Milligram.io](https://github.com/milligram/milligram-scss) con la identidad gráfica digital de Cumplo*
 
 ## Uso:
 
@@ -10,7 +10,7 @@
 
 - `$ yarn`
 
-- `$ node .`
+- `$ node .` ó `$ yarn run start`
 
 ## Licencia:
 
