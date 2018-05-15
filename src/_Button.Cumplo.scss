@@ -13,7 +13,10 @@ input[type='submit'] {
   letter-spacing: 0;
   font-weight: 500;
 
-  &:focus,
+  &:focus {
+    outline: 0;
+  }
+
   &:hover {
     background-color: darken($color-primary, 10%);
     border-color: darken($color-primary, 10%);
@@ -23,7 +26,6 @@ input[type='submit'] {
     background-color: $color-initial;
     color: $color-primary;
 
-    &:focus,
     &:hover {
       background-color: $color-primary;
       border-color: $color-primary;
@@ -32,7 +34,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: $color-initial;
         color: $color-primary;
@@ -42,7 +43,6 @@ input[type='submit'] {
 
   &.button-clear {
 
-    &:focus,
     &:hover {
       color: darken($color-primary, 10%);
     }
@@ -52,7 +52,6 @@ input[type='submit'] {
     background-color: $color-sexenary;
     border: .1rem solid $color-sexenary;
 
-    &:focus,
     &:hover {
       background-color: darken($color-sexenary, 20%);
       border-color: darken($color-sexenary, 20%);
@@ -60,7 +59,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: $color-sexenary;
         border-color: $color-sexenary;
@@ -73,7 +71,6 @@ input[type='submit'] {
     color: $color-sexenary;
     border: .1rem solid $color-sexenary;
 
-    &:focus,
     &:hover {
       background-color: $color-sexenary;
       border-color: $color-sexenary;
@@ -82,7 +79,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: $color-initial;
         color: $color-sexenary;
@@ -94,7 +90,6 @@ input[type='submit'] {
     background-color: $color-septenary;
     border: .1rem solid $color-septenary;
 
-    &:focus,
     &:hover {
       background-color: darken($color-septenary, 10%);
       border-color: darken($color-septenary, 10%);
@@ -106,7 +101,6 @@ input[type='submit'] {
     color: $color-septenary;
     border: .1rem solid $color-septenary;
 
-    &:focus,
     &:hover {
       background-color: $color-septenary;
       border-color: $color-septenary;
@@ -115,7 +109,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: $color-initial;
         color: $color-septenary;
@@ -127,7 +120,6 @@ input[type='submit'] {
     background-color: $color-octonary;
     border: .1rem solid $color-octonary;
 
-    &:focus,
     &:hover {
       background-color: darken($color-octonary, 10%);
       border-color: darken($color-octonary, 10%);
@@ -135,7 +127,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: darken($color-octonary, 10%);
         border-color: darken($color-octonary, 10%);
@@ -148,7 +139,6 @@ input[type='submit'] {
     color: $color-octonary;
     border: .1rem solid $color-octonary;
 
-    &:focus,
     &:hover {
       background-color: $color-octonary;
       border-color: $color-octonary;
@@ -157,7 +147,6 @@ input[type='submit'] {
 
     &[disabled] {
 
-      &:focus,
       &:hover {
         background-color: $color-initial;
         color: $color-octonary;
