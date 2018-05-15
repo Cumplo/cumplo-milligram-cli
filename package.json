@@ -1,6 +1,6 @@
 {
   "name": "cumplo-milligram",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "NodeJS CLI para actualizar Milligram.io con la identidad gráfica digital de Cumplo",
   "main": "index.js",
   "scripts": {
