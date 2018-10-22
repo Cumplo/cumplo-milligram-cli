@@ -83,7 +83,7 @@ textarea::placeholder {
 }
 .radio .indicator {
   border-radius: 50%;
-  backfround-color: $color-initial;
+  background-color: $color-initial;
 }
 .input:hover input ~ .indicator,
 .input input:focus ~ .indicator {
